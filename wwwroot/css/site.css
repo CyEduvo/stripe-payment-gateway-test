@@ -1,0 +1,64 @@
+/* Styles the classroom gem shop with plain CSS and responsive layouts. */
+:root { color-scheme: dark; --bg: #10131e; --panel: #1a1e2d; --line: #33394f; --text: #f2f1f9; --muted: #b5b9ce; --accent: #c4b0ff; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, sans-serif; }
+a { color: inherit; }
+button, .button-link { font: inherit; cursor: pointer; border-radius: 8px; }
+button:focus-visible, a:focus-visible { outline: 3px solid #e3cd7a; outline-offset: 4px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.test-banner { padding: 10px 20px; background: #302b19; color: #eedb94; text-align: center; font-size: 13px; }
+.site-header { max-width: 1220px; margin: auto; padding: 25px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { text-decoration: none; font-size: 24px; font-weight: 750; display: flex; gap: 10px; align-items: center; }
+.brand > span:first-child { color: var(--accent); }
+.demo-label { font-size: 9px; letter-spacing: 1.4px; color: var(--muted); margin-left: 8px; }
+nav { display: flex; gap: 28px; } nav a { text-decoration: none; color: var(--muted); } nav a:hover { color: white; }
+main { max-width: 1220px; margin: auto; padding: 0 30px 60px; min-height: 72vh; }
+.hero { padding: 45px 0 35px; background: radial-gradient(ellipse at 75% 40%, #32244870, transparent 60%); }
+.eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.15; letter-spacing: -1.5px; margin: 18px 0; }
+h1 span { color: var(--accent); }
+h2 { font-size: 21px; margin: 0; } h3 { font-size: 18px; margin: 16px 0 5px; }
+.hero > p:not(.eyebrow), .page-heading > p, .result-panel > p { color: var(--muted); }
+.pill { display: inline-block; border: 1px solid #4b4263; color: #d2c4f7; padding: 5px 12px; border-radius: 20px; font-size: 12px; }
+.notice { background: #28243b; border: 1px solid #55496e; border-radius: 10px; padding: 15px 20px; margin: 0 0 28px; }
+.shop-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 30px; align-items: start; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 10px; }
+.section-heading > span { font-size: 12px; color: var(--muted); }
+.product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.product-card { padding: 15px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.product-card p { min-height: 48px; color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+.product-art { height: 110px; display: grid; place-items: center; border-radius: 8px; background: radial-gradient(ellipse, #62519688, #252039); color: #bca2ff; font-size: 65px; text-shadow: 0 6px 25px #ab82ff66; }
+.art-gems-550 { color: #8ec9fb; background: radial-gradient(ellipse, #315674, #1d283b); }
+.art-gems-1200 { color: #f4c988; background: radial-gradient(ellipse, #785c39, #332938); }
+.art-skin-ember { color: #ffad94; background: radial-gradient(ellipse, #763f45, #322131); }
+.art-pass-monthly { color: #8de0c6; background: radial-gradient(ellipse, #2a5d56, #1b3031); }
+.product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.product-bottom strong { font-size: 15px; }
+.add-button { padding: 5px 12px; background: #332c49; border: 1px solid #64527e; color: #e1d3ff; font-size: 13px; }
+.add-button:hover { background: #4b3b6a; }
+.cart-panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px; position: sticky; top: 20px; }
+.cart-empty { padding: 25px 5px; color: var(--muted); font-size: 14px; text-align: center; }
+.cart-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.cart-total { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding: 20px 0; }
+.primary, .button-link { background: var(--accent); color: #211830; border: 0; padding: 12px 16px; font-weight: 700; text-decoration: none; display: inline-block; }
+.primary { width: 100%; font-size: 14px; }
+.text-button { background: none; color: var(--muted); border: 0; padding: 8px 0; font-size: 12px; text-decoration: underline; }
+#clear-button { display: block; margin: 8px auto; }
+#cart-message { color: #f0cd92; font-size: 13px; }
+.small-note { font-size: 12px; color: var(--muted); }
+.page-heading { padding: 38px 0 20px; }
+.result-panel { max-width: 760px; margin: 55px auto; padding: 30px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.result-panel h1 { font-size: 36px; } .result-panel .notice { font-size: 14px; margin-top: 25px; }
+.order-lines { padding: 0; list-style: none; } .order-lines li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; }
+.order-id { font-family: ui-monospace, monospace; font-size: 12px; overflow-wrap: anywhere; }
+.text-link { margin-left: 18px; font-size: 14px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; background: var(--panel); }
+th, td { padding: 18px; border-bottom: 1px solid var(--line); } th { color: var(--muted); font-size: 12px; }
+td ul { margin: 0; padding-left: 15px; min-width: 160px; } .money { white-space: nowrap; }
+.badge { padding: 5px 10px; border-radius: 20px; font-size: 12px; } .pending { background: #4c3c23; color: #f1d59c; } .paid { background: #1d4b40; color: #a0e9c9; }
+.empty-state { padding: 50px 20px; text-align: center; background: var(--panel); border-radius: 12px; }
+footer { max-width: 1160px; margin: auto; border-top: 1px solid var(--line); padding: 24px 0; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 15px; }
+@media (max-width: 1050px) { .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .shop-layout { grid-template-columns: 1fr; } .cart-panel { position: static; } .demo-label { display: none; } main { padding: 0 18px 35px; } .site-header { padding: 18px; } footer { margin: 0 18px; flex-direction: column; } }
+@media (max-width: 400px) { .product-grid { grid-template-columns: 1fr; } .order-lines li { flex-direction: column; } }

@@ -1,0 +1,39 @@
+@* Shows product display data while leaving all payment decisions to the server. *@
+@model IReadOnlyList<Product>
+@{ ViewData["Title"] = "Shop"; }
+<section class="hero">
+    <p class="eyebrow">THE ADVENTURE STARTS HERE</p>
+    <h1>A little sparkle.<br /><span>A new adventure.</span></h1>
+    <p>Pick your gems, dress your hero, and try a test checkout.</p>
+    <span class="pill">◆ MYR shop · Test payments only</span>
+</section>
+@if (ViewBag.SetupError != null)
+{
+    <div class="notice" role="status"><strong>Setup needed</strong><br />@ViewBag.SetupError</div>
+}
+<div class="shop-layout">
+    <section aria-labelledby="catalog-title">
+        <div class="section-heading"><h2 id="catalog-title">The collection</h2><span>5 little upgrades</span></div>
+        <div class="product-grid">
+        @foreach (var product in Model)
+        {
+            <article class="product-card" data-id="@product.Id" data-name="@product.Name" data-price="@product.Price">
+                <div class="product-art art-@product.Id" aria-hidden="true">@(product.Id == "skin-ember" ? "♛" : product.Id == "pass-monthly" ? "✦" : "◆")</div>
+                <h3>@product.Name</h3><p>@product.Description</p>
+                <div class="product-bottom"><strong>RM@((product.Price / 100m).ToString("F2", CultureInfo.InvariantCulture))</strong><button type="button" class="add-button" data-product-id="@product.Id" aria-label="Add @product.Name to cart">Add +</button></div>
+            </article>
+        }
+        </div>
+    </section>
+    <aside class="cart-panel" aria-labelledby="cart-title">
+        <div class="section-heading"><h2 id="cart-title">Your cart</h2><span aria-hidden="true">◇</span></div>
+        @Html.AntiForgeryToken()
+        <div id="cart-items"></div>
+        <div class="cart-total"><span>Total</span><strong id="cart-total">RM0.00</strong></div>
+        <button id="checkout-button" type="button" class="primary">Continue to checkout →</button>
+        <button id="clear-button" type="button" class="text-button">Clear cart</button>
+        <p id="cart-message" role="status" aria-live="polite"></p>
+        <p class="small-note">Up to 10 of each item. Checkout opens on Stripe’s hosted page.</p>
+    </aside>
+</div>
+@section Scripts { <script src="~/js/cart.js" asp-append-version="true" defer></script> }

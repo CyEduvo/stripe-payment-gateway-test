@@ -1,0 +1,21 @@
+@* Lists the in-memory orders and their server-controlled payment status. *@
+@model ICollection<Order>
+@{ ViewData["Title"] = "Orders"; }
+<section class="page-heading"><p class="eyebrow">THE SERVER'S RECORD</p><h1>Your test orders</h1><p>Paid is set by the server after checking with Stripe, never by the browser.</p></section>
+@if (Model.Count == 0)
+{
+    <div class="empty-state"><h2>No orders yet</h2><p>Your next adventure is a few gems away.</p><a class="button-link" href="/">Explore the shop</a></div>
+}
+else
+{
+    <div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Items</th><th>Total</th><th>Status</th><th>Created (UTC)</th></tr></thead><tbody>
+    @foreach (var order in Model)
+    {
+        var status = order.Status;
+        <tr><td class="order-id">@order.Id</td><td><ul>
+        @foreach (var line in order.Lines) { <li>@line.Name × @line.Quantity</li> }
+        </ul></td><td class="money">RM@((order.Total / 100m).ToString("F2", CultureInfo.InvariantCulture))</td><td><span class="badge @status.ToLowerInvariant()">@status</span></td><td>@order.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")</td></tr>
+    }
+    </tbody></table></div>
+}
+<p class="small-note">Demo orders live in memory and disappear when the app restarts. Refresh to see updates.</p>

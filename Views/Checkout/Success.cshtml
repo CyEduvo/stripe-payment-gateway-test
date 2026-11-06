@@ -1,0 +1,29 @@
+@* Displays only the order status returned by server-side fulfillment. *@
+@model Order?
+@{ ViewData["Title"] = "Payment status"; }
+<section class="result-panel">
+    @if (Model == null)
+    {
+        <p class="eyebrow">PAYMENT LOOKUP</p><h1>We could not find this payment</h1>
+        <p>@(ViewBag.LookupError ?? "Check the session ID. Orders are also cleared when this demo restarts.")</p>
+    }
+    else
+    {
+        var status = Model.Status;
+        <div id="payment-result" data-status="@status" data-session-id="@Model.SessionId"></div>
+        <p class="eyebrow">@status.ToUpperInvariant()</p>
+        <h1>@(status == "Paid" ? "Payment received" : "Waiting for Stripe to confirm...")</h1>
+        <p class="order-id">Order @Model.Id</p>
+        <ul class="order-lines">
+        @foreach (var line in Model.Lines)
+        {
+            <li><span>@line.Name × @line.Quantity</span><strong>RM@((line.Total / 100m).ToString("F2", CultureInfo.InvariantCulture))</strong></li>
+        }
+        </ul>
+        <p class="cart-total">Total <strong>RM@((Model.Total / 100m).ToString("F2", CultureInfo.InvariantCulture))</strong></p>
+        <p id="payment-message" role="status"></p>
+    }
+    <p class="notice">This page asked Stripe's server for the status. It did not trust the URL.</p>
+    <a class="button-link" href="/orders">View orders</a> <a class="text-link" href="/">Back to shop</a>
+</section>
+@section Scripts { <script src="~/js/payment-status.js" asp-append-version="true" defer></script> }

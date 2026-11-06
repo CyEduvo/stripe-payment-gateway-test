@@ -1,0 +1,12 @@
+<!-- Builds the .NET 8 classroom web application. -->
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>gemshop-classroom-demo</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Stripe.net" Version="53.0.0" />
+  </ItemGroup>
+</Project>

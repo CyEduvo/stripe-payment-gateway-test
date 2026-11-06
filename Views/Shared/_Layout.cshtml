@@ -1,0 +1,20 @@
+@* Provides navigation and the always-visible test payment reminder. *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · GemShop</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="test-banner">Test mode: use card <strong>4242 4242 4242 4242</strong>, any future date, any CVC. No real money.</div>
+    <header class="site-header">
+        <a class="brand" href="/"><span aria-hidden="true">◆</span> GemShop<span class="demo-label">CLASSROOM DEMO</span></a>
+        <nav aria-label="Main navigation"><a href="/">Shop</a><a href="/orders">Orders</a></nav>
+    </header>
+    <main>@RenderBody()</main>
+    <footer>Made for learning. <span>The browser holds the cart. The server decides what is paid.</span></footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

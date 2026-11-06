@@ -1,0 +1,11 @@
+{
+  "_comment": "Runs the classroom demo on a fixed local HTTP port.",
+  "profiles": {
+    "GemShop": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5000",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  }
+}
